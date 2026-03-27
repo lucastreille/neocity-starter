@@ -30,6 +30,8 @@
 .mode-blackout{ color: #333; animation: flicker 2s infinite; }
 .mode-riot    { color: #ff003c; animation: pulse 0.5s infinite; }
 .mode-love    { color: #00ff88; }
+.mode-drones  { color: #7c5cff; }
+.mode-priority { color: #6ad6ff; }
 
 .lights-grid {
   display: grid;
@@ -76,6 +78,14 @@
   width: 3px;
   height: 16px;
   background: #333;
+}
+
+.light-label {
+  margin-top: 4px;
+  font-size: 0.55rem;
+  color: #4a5568;
+  letter-spacing: 0.08em;
+  text-align: center;
 }
 
 .traffic-stats {
