@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  background: black;
+}
+
+/* Terminal principal */
+.terminal {
+  font-family: "Courier New", monospace;
+  color: #00ff41;
+  background: black;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Header du terminal */
+.header {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Historique des commandes */
+.history {
+  height: 70vh;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+/* Ligne d'entrée */
+.input-line {
+  display: flex;
+  align-items: center;
+}
+
+/* Input du terminal */
+.input-line input {
+  background: transparent;
+  border: none;
+  color: #00ff41;
+  font-family: inherit;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Scrollbar style terminal */
+.history::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history::-webkit-scrollbar-thumb {
+  background: #00ff41;
+}
+
+/* Effet curseur terminal */
+.input-line input::placeholder {
+  color: #00ff41;
+}
+
+/* Animation curseur */
+.input-line::after {
+  content: "_";
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}

@@ -1,0 +1,243 @@
+@keyframes lightning {
+  0%, 100% { background: #0f172a; }
+  5%, 10% { background: #ffffff; }
+  15%, 100% { background: #0f172a; }
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes acid-rain-fall {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes rainbow-gradient {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+.weather-tower {
+  padding: 20px;
+  height: 100%;
+  transition: background 1s ease;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.weather-tower.weather-clear {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+.weather-tower.weather-storm {
+  background: #0f172a;
+  animation: lightning 0.3s infinite;
+}
+
+.weather-tower.weather-acid {
+  background: #000000;
+}
+
+.weather-tower.weather-rainbow {
+  background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+  background-size: 200% 100%;
+  animation: rainbow-gradient 3s ease infinite;
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #8b5cf6;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 20px;
+}
+
+.weather-label {
+  font-weight: bold;
+  color: #00ff88;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
+
+.weather-status {
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+}
+
+.weather-status.clear {
+  color: #00ff88;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
+
+.weather-status.storm {
+  color: #ff6b35;
+  animation: pulse 0.6s infinite;
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.4);
+}
+
+.weather-status.acid {
+  color: #ff003c;
+  animation: pulse 0.4s infinite;
+  box-shadow: 0 0 8px rgba(255, 0, 60, 0.4);
+}
+
+.weather-status.rainbow {
+  color: #ff0080;
+  text-shadow: 0 0 8px rgba(255, 0, 128, 0.6);
+}
+
+.weather-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.weather-icon-large {
+  font-size: clamp(6rem, 15vw, 10rem);
+  text-align: center;
+  line-height: 1;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
+}
+
+.weather-metrics {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.metric-label {
+  font-size: 0.7rem;
+  color: #4a5568;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+}
+
+.metric-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.weather-controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  margin-top: 20px;
+}
+
+.ctrl-btn {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #8b5cf6;
+  color: #8b5cf6;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.ctrl-btn:hover {
+  background: #8b5cf6;
+  color: #0f172a;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+}
+
+.ctrl-btn:active {
+  transform: scale(0.95);
+}
+
+.ctrl-btn.reset-btn {
+  border-color: #ff3344;
+  color: #ff3344;
+}
+
+.ctrl-btn.reset-btn:hover {
+  background: #ff3344;
+  color: #0f172a;
+  box-shadow: 0 0 12px rgba(255, 51, 68, 0.6);
+}
+
+.rain-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(74, 158, 255, 0.3) 2px,
+    rgba(74, 158, 255, 0.3) 4px
+  );
+  animation: rain-fall 0.8s linear infinite;
+  pointer-events: none;
+}
+
+.acid-rain-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(138, 43, 226, 0.4) 2px,
+    rgba(138, 43, 226, 0.4) 4px
+  );
+  animation: acid-rain-fall 0.7s linear infinite;
+  pointer-events: none;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}

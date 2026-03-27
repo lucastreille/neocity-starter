@@ -1,0 +1,200 @@
+.neo-hospital {
+  --accent: #00ff88;
+  background: #000d1a;
+  color: #aaa;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 8px;
+}
+
+.hospital-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #0a1f33;
+  padding-bottom: 6px;
+  color: #4a9eff;
+  font-size: 0.7rem;
+}
+
+.hospital-status {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+}
+
+
+
+.hospital-body {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ECG */
+.ecg-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ecg-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+}
+
+.bpm-display {
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.ecg-screen {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(transparent 95%, rgba(12, 64, 110, 0.35) 96%),
+    linear-gradient(90deg, transparent 95%, rgba(12, 64, 110, 0.25) 96%),
+    #000;
+  background-size: 100% 12px, 18px 100%, auto;
+  border: 1px solid #0a1f33;
+  border-radius: 4px;
+  padding: 6px 8px;
+  flex: 1;
+  min-height: 64px;
+}
+
+.ecg-wave {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.ecg-path-glow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.35;
+}
+
+.ecg-path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 0.95;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ecg-scanline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18%;
+  background: linear-gradient(90deg, rgba(0, 255, 136, 0), rgba(0, 255, 136, 0.18), rgba(0, 255, 136, 0));
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: ecg-sweep 2.2s linear infinite;
+}
+
+.power-badge {
+  font-size: 0.6rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+/* Lits */
+.beds-section {
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.beds-label {
+  font-size: 0.6rem;
+  color: #4a5568;
+}
+
+.beds-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+
+.bed {
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 3px;
+  text-align: center;
+  font-size: 0.7rem;
+  transition: all 0.3s ease;
+}
+
+.bed-empty    { border-color: #1a2332; color: #222; }
+.bed-occupied { border-color: #3b82f6; color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+.bed-critical { border-color: #ef4444; color: #ef4444; background: rgba(255, 0, 60, 0.1); animation: pulse 0.5s infinite; }
+
+/* Admissions */
+.intakes-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid #0a1f33;
+  padding-top: 6px;
+}
+
+.intakes-label {
+  font-size: 0.6rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+}
+
+.intake-line {
+  display: flex;
+  gap: 8px;
+  font-size: 0.6rem;
+  color: #aaa;
+}
+
+.intake-time {
+  color: #4a5568;
+  min-width: 60px;
+}
+
+.simulate-btn {
+  order: -1;
+  flex: 0 0 auto;
+  background: transparent;
+  border: 1px solid #0a1f33;
+  color: #4a9eff;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  padding: 4px 12px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+.simulate-btn:hover { background: rgba(74, 158, 255, 0.1); }
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes ecg-sweep {
+  from { transform: translateX(-30%); }
+  to { transform: translateX(620%); }
+}
+
+.neo-hospital.love-mode {
+  --accent: #ff69b4;
+}

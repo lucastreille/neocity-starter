@@ -1,0 +1,111 @@
+.traffic-grid {
+  background: #050a05;
+  color: #aaa;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 8px;
+}
+
+.traffic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1a2332;
+  padding-bottom: 6px;
+  font-size: 0.7rem;
+  color: #00ff88;
+}
+
+.traffic-mode {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+}
+.mode-normal  { color: #00ff88; }
+.mode-storm   { color: #ff8800; }
+.mode-blackout{ color: #333; animation: flicker 2s infinite; }
+.mode-riot    { color: #ff003c; animation: pulse 0.5s infinite; }
+.mode-love    { color: #00ff88; }
+
+.lights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  flex: 1;
+  align-items: center;
+  justify-items: center;
+  padding: 8px 0;
+}
+
+.traffic-light {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.light-body {
+  background: #111;
+  border: 2px solid #222;
+  border-radius: 6px;
+  padding: 5px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 22px;
+}
+
+.led {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #111;
+  border: 1px solid #222;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.led-red.on    { background: #ff003c; box-shadow: 0 0 8px #ff003c, 0 0 20px rgba(255,0,60,0.5); }
+.led-yellow.on { background: #ffcc00; box-shadow: 0 0 8px #ffcc00, 0 0 20px rgba(255,200,0,0.5); }
+.led-green.on  { background: #00ff44; box-shadow: 0 0 8px #00ff44, 0 0 20px rgba(0,255,68,0.5); }
+
+.light-pole {
+  width: 3px;
+  height: 16px;
+  background: #333;
+}
+
+.traffic-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: #4a5568;
+  border-top: 1px solid #1a2332;
+  padding-top: 4px;
+}
+
+.simulate-btn {
+  order: -1;
+  flex: 0 0 auto;
+  background: transparent;
+  border: 1px solid #1a2332;
+  color: #4a5568;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  padding: 4px 12px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
+.simulate-btn:hover { border-color: #00ff88; color: #00ff88; }
+
+@keyframes pulse   { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.2; }
+  97% { opacity: 0.8; }
+  98% { opacity: 0.1; }
+}

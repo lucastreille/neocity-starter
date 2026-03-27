@@ -1,0 +1,145 @@
+.citizen-feed {
+  background: #0d0d14;
+  color: #aaa;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  padding: 12px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.citizen-feed.crisis-mode {
+  background: #1a0a0a;
+  animation: crisisPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes crisisPulse {
+  0%, 100% { background: #1a0a0a; }
+  50% { background: #2a0a0a; }
+}
+
+.feed-header { 
+  display: flex; 
+  justify-content: space-between; 
+  color: #8b5cf6; 
+  font-size: 0.8rem; 
+  font-weight: bold;
+}
+
+.citizen-feed.crisis-mode .feed-header {
+  color: #ff003c;
+  animation: glitch 0.2s ease-in-out infinite;
+}
+
+@keyframes glitch {
+  0%, 100% { color: #ff003c; }
+  50% { color: #ff6b35; }
+}
+
+.panic-bar { 
+  height: 3px; 
+  background: #1a2332; 
+  border-radius: 2px; 
+}
+
+.panic-fill { 
+  height: 3px; 
+  border-radius: 2px; 
+  transition: width 0.3s ease, background 0.3s ease; 
+}
+
+.feed-posts { 
+  flex: 1; 
+  overflow-y: auto; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
+}
+
+.citizen-feed.crisis-mode .feed-posts {
+  gap: 2px;
+}
+
+.post { 
+  display: flex; 
+  gap: 8px; 
+  animation: slideIn 0.3s ease;
+}
+
+.citizen-feed.crisis-mode .post {
+  animation: slideIn 0.15s ease;
+}
+
+.post-avatar { 
+  font-size: 1.2rem; 
+  flex-shrink: 0; 
+}
+
+.post-content { }
+
+.post-user { 
+  color: #8b5cf6; 
+  font-size: 0.7rem; 
+}
+
+.citizen-feed.crisis-mode .post-user {
+  color: #ff003c;
+}
+
+.post-ts { 
+  color: #4a5568; 
+  font-size: 0.65rem; 
+  margin-left: 6px; 
+}
+
+.post-text { 
+  color: #ccc; 
+  line-height: 1.4; 
+}
+
+.citizen-feed.crisis-mode .post-text {
+  color: #ff6b35;
+}
+
+.feed-posts::-webkit-scrollbar { 
+  width: 3px; 
+}
+
+.feed-posts::-webkit-scrollbar-thumb { 
+  background: #333; 
+}
+
+.simulate-btn {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  background: transparent; 
+  border: 1px dashed #333;
+  color: #4a5568; 
+  font-family: 'Courier New', monospace; 
+  font-size: 0.7rem; 
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.simulate-btn:hover { 
+  border-color: #ff003c; 
+  color: #ff003c; 
+  background: rgba(255, 0, 60, 0.1);
+}
+
+.simulate-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes slideIn { 
+  from { 
+    opacity: 0; 
+    transform: translateY(8px); 
+  } 
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  } 
+}

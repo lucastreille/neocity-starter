@@ -1,0 +1,215 @@
+.cctv-matrix {
+  background: #000a00;
+  color: #00cc44;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 8px;
+}
+
+.cctv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #003311;
+  padding-bottom: 6px;
+  font-size: 0.7rem;
+}
+
+.breach-badge {
+  color: #00cc44;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border: 1px solid #003311;
+}
+.breach-badge.active {
+  color: #ff003c;
+  border-color: #ff003c;
+  animation: blink 0.6s step-end infinite;
+}
+
+.drone-alert {
+  background: rgba(255, 0, 60, 0.1);
+  border: 1px solid #ff003c;
+  color: #ff003c;
+  padding: 4px 8px;
+  font-size: 0.65rem;
+  text-align: center;
+  animation: pulse 0.8s infinite;
+}
+
+.cameras-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  flex: 1;
+}
+
+.cameras-grid.glitching .camera {
+  animation: glitch 0.3s ease;
+}
+
+.camera {
+  background: #000800;
+  border: 1px solid #002200;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.camera-online {
+  border-color: #003311;
+}
+.camera-degraded {
+  border-color: #664400;
+}
+.camera-hacked {
+  border-color: #660000;
+  animation: pulse 1s infinite;
+}
+.camera-offline {
+  border-color: #111;
+  background: #050505;
+}
+
+.camera-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+}
+
+.cam-id {
+  color: #00cc44;
+  font-weight: bold;
+}
+.cam-status.online {
+  color: #00cc44;
+}
+.cam-status.degraded {
+  color: #ff8800;
+}
+.cam-status.hacked {
+  color: #ff003c;
+}
+.cam-status.offline {
+  color: #333;
+}
+
+.camera-feed {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 40px;
+}
+
+.feed-text {
+  font-size: 0.6rem;
+  color: #00cc44;
+  text-align: center;
+  line-height: 1.3;
+}
+.feed-text.degraded {
+  color: #ff8800;
+}
+.feed-text.hacked {
+  color: #ff003c;
+}
+
+.no-signal {
+  color: #222;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+}
+
+.drone-overlay {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(255, 0, 60, 0.8);
+  color: white;
+  font-size: 0.55rem;
+  padding: 1px 3px;
+}
+
+.camera-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.55rem;
+  color: #004411;
+}
+
+.cam-time {
+  color: #003311;
+}
+
+/* Effet scanlines CRT */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+}
+
+.simulate-btn {
+  order: -1;
+  flex: 0 0 auto;
+  background: transparent;
+  border: 1px solid #003311;
+  color: #001fcc;
+  font-family: "Courier New", monospace;
+  font-size: 0.65rem;
+  padding: 4px 12px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  align-self: flex-end;
+  margin-bottom: 4px;
+}
+.simulate-btn:hover {
+  background: rgba(0, 204, 68, 0.1);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes glitch {
+  0% {
+    transform: skewX(0deg);
+  }
+  20% {
+    transform: skewX(-4deg);
+    filter: hue-rotate(90deg);
+  }
+  40% {
+    transform: skewX(2deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
+}

@@ -1,0 +1,246 @@
+.billboard-matrix {
+  --matrix-bg: #040509;
+  --matrix-glow: rgba(255, 0, 76, 0.05);
+  --panel-border: rgba(255, 255, 255, 0.07);
+  --panel-text: rgba(255, 255, 255, 0.9);
+  --accent: #00c6d9;
+  --accent-warm: #d9872a;
+  background:
+    radial-gradient(circle at top, rgba(80, 20, 40, 0.06), transparent 60%),
+    radial-gradient(circle at bottom, rgba(10, 60, 70, 0.06), transparent 55%),
+    linear-gradient(140deg, rgba(6, 8, 14, 0.9), rgba(2, 3, 6, 0.95)),
+    var(--matrix-bg);
+  color: #e6e9ef;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.billboard-matrix::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(50, 15, 35, 0.05),
+    rgba(5, 10, 18, 0.2)
+  );
+  pointer-events: none;
+}
+
+.billboard-header {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.72rem;
+  z-index: 1;
+}
+
+.glitch-badge {
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+}
+
+.glitch-badge.active {
+  color: #ff003c;
+  border-color: #ff003c;
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.35);
+  animation: pulse 0.8s infinite;
+}
+
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  z-index: 1;
+}
+
+.panel {
+  flex: 1;
+  border: 2px solid var(--panel-border);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background 0.4s,
+    border-color 0.4s,
+    box-shadow 0.4s;
+  min-height: 60px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 12px rgba(0, 198, 217, 0.2);
+}
+
+.panel.crisis {
+  text-shadow: 0 0 6px rgba(255, 0, 70, 0.25);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 14px rgba(255, 0, 60, 0.28);
+}
+
+.panel-text {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px;
+  letter-spacing: 0.05em;
+  z-index: 1;
+  color: var(--panel-text);
+}
+
+.panel-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+
+.panel.glitching {
+  animation:
+    glitch 0.35s steps(4) infinite,
+    jitter 1.4s steps(2) infinite;
+}
+
+.panel.glitch-pulse {
+  animation:
+    glitch 0.35s steps(4) 2,
+    flash 0.6s ease-in-out;
+}
+
+.panel.blackout-partial {
+  filter: brightness(0.15) saturate(0.2);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.panel.blackout-total {
+  background: #050506 !important;
+  filter: brightness(0.08) saturate(0.1);
+  border-color: rgba(255, 255, 255, 0.02);
+}
+
+.panel.blackout-total .panel-text {
+  color: rgba(255, 0, 51, 0.65);
+  animation: blackout-blink 0.9s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: skewX(0deg);
+    filter: hue-rotate(0deg) saturate(1.05);
+  }
+  25% {
+    transform: skewX(-4deg) translateX(2px) translateY(-1px);
+    filter: hue-rotate(40deg) contrast(1.1);
+  }
+  50% {
+    transform: skewX(3deg) translateX(-2px) translateY(1px);
+    filter: hue-rotate(80deg) saturate(0.95);
+  }
+  75% {
+    transform: skewX(-2deg) translateX(1px);
+    filter: hue-rotate(120deg) contrast(0.95);
+  }
+  100% {
+    transform: skewX(0deg);
+    filter: hue-rotate(0deg) saturate(1.05);
+  }
+}
+
+@keyframes jitter {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blackout-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.simulate-btn {
+  order: -1;
+  flex: 0 0 auto;
+  align-self: flex-end;
+  margin-bottom: 4px;
+  padding: 6px;
+  background: transparent;
+  border: 1px dashed #333;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
+}
+.simulate-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(0, 240, 255, 0.08);
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  z-index: 1;
+}

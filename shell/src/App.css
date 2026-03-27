@@ -1,0 +1,199 @@
+/* NeoCity Shell — Dark Cyberpunk Theme */
+:root {
+  --bg-primary: #000814;
+  --bg-secondary: #0d1117;
+  --accent-green: #00ff88;
+  --accent-violet: #8b5cf6;
+  --accent-red: #ff003c;
+  --accent-orange: #ff8800;
+  --text-dim: #4a5568;
+  --border-color: #1a2332;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--accent-green);
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+  overflow: hidden;
+  transition: background 1s ease;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Header */
+.shell-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+}
+
+.shell-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: var(--accent-violet);
+  text-shadow: 0 0 20px var(--accent-violet);
+}
+
+.city-status {
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.city-status.normal { color: var(--accent-green); }
+.city-status.alert  { color: var(--accent-orange); animation: pulse 1s infinite; }
+.city-status.crisis { color: var(--accent-red);    animation: pulse 0.5s infinite; }
+
+.shell-ports {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Grid layout — 3 colonnes (1fr 1fr 2fr), 5 rangées */
+.shell-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: 1.15fr 1.1fr 1.1fr 1.15fr 0.9fr;
+  gap: 2px;
+  flex: 1;
+  min-height: 0;
+  padding: 2px;
+}
+
+.mfe-slot {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Rangées 1-3 — MFEs originaux */
+.slot-hacker   { grid-column: 1; grid-row: 1 / 3; }
+.slot-weather  { grid-column: 2; grid-row: 1; }
+.slot-oracle   { grid-column: 3; grid-row: 1 / 3; min-height: 0; }
+.slot-powergrid{ grid-column: 2; grid-row: 2; }
+.slot-drones   { grid-column: 1; grid-row: 3; }
+.slot-radio    { grid-column: 2; grid-row: 3; }
+.slot-citizens { grid-column: 3; grid-row: 3; }
+
+/* Rangée 4 — Nouveaux MFEs */
+.slot-cctv     { grid-column: 1; grid-row: 4; }
+.slot-traffic  { grid-column: 2; grid-row: 4; }
+.slot-hospital { grid-column: 3; grid-row: 4; }
+
+/* Rangée 5 — Oracle pleine largeur */
+.slot-billboard{ grid-column: 1 / 4; grid-row: 5; min-height: 0; }
+
+/* Placeholder */
+.mfe-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  text-align: center;
+  gap: 8px;
+  border: 1px dashed var(--border-color);
+}
+
+.mfe-placeholder .port {
+  font-size: 1.4rem;
+  color: var(--accent-violet);
+  opacity: 0.4;
+}
+
+.blink {
+  animation: blink 1.2s step-end infinite;
+}
+
+/* Error fallback */
+.mfe-offline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  color: var(--accent-red);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 16px;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 1100px) {
+  .shell-header {
+    padding: 10px 12px;
+  }
+
+  .shell-title {
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+  }
+
+  .shell-ports {
+    display: none;
+  }
+}
+
+@media (max-width: 780px) {
+  .shell-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(11, minmax(130px, 1fr));
+    overflow: auto;
+  }
+
+  .slot-hacker,
+  .slot-weather,
+  .slot-oracle,
+  .slot-powergrid,
+  .slot-drones,
+  .slot-radio,
+  .slot-citizens,
+  .slot-cctv,
+  .slot-traffic,
+  .slot-hospital,
+  .slot-billboard {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
